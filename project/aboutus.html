@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About ClimaSense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Keep your existing root variables */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --section-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: #f8fafc;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.9)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .team-member-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .team-member-info {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .team-member-card:hover .team-member-info {
+            bottom: 0;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Keep your existing navbar -->
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-32">
+        <a href="home.html">Home</a>
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">About ClimaSense</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Pioneering the future of climate monitoring with innovative solutions and sustainable technology</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#story" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">Our Story</a>
+                <a href="#team" class="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all">Meet the Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Climate monitoring" 
+                         class="rounded-2xl shadow-2xl">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+                    <p class="text-gray-600 mb-6">At ClimaSense, we're committed to revolutionizing climate monitoring through cutting-edge technology and data-driven solutions. Our mission is to empower organizations with accurate, real-time environmental insights.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="stat-card p-6">
+                            <h3 class="text-4xl font-bold mb-2">100+</h3>
+                            <p>Global Partners</p>
+                        </div>
+                        <div class="stat-card p-6">
+                            <h3 class="text-4xl font-bold mb-2">50M+</h3>
+                            <p>Data Points Daily</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Journey</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item mb-12">
+                    <h3 class="text-xl font-bold mb-2">2020 - Foundation</h3>
+                    <p class="text-gray-600">ClimaSense was founded with a vision to revolutionize environmental monitoring.</p>
+                </div>
+                <div class="timeline-item mb-12">
+                    <h3 class="text-xl font-bold mb-2">2021 - First Major Project</h3>
+                    <p class="text-gray-600">Launched our first enterprise-scale climate monitoring solution.</p>
+                </div>
+                <div class="timeline-item mb-12">
+                    <h3 class="text-xl font-bold mb-2">2022 - Global Expansion</h3>
+                    <p class="text-gray-600">Expanded operations to 25+ countries worldwide.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">2023 - Innovation Award</h3>
+                    <p class="text-gray-600">Received the Global Climate Tech Innovation Award.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member-card">
+                    <img src="Ankit image (1).jpg" 
+                         alt="Team member" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="team-member-info">
+                        <h3 class="text-xl font-bold text-white mb-2">Ankit Kumar Singh</h3>
+                        <p class="text-gray-200 mb-4">CEO & Founder</p>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/feed/?trk=p_mwlite_feed-primary_nav" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member-card">
+                    <img src="anandaphoto.jpeg" 
+                         alt="Team member" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="team-member-info">
+                        <h3 class="text-xl font-bold text-white mb-2">Ananda Krishnan SD</h3>
+                        <p class="text-gray-200 mb-4">CTO</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member-card">
+                    <img src="xya.jpeg" 
+                         alt="Team member" 
+                         class="w-full h-[400px] object-cover">
+                    <div class="team-member-info">
+                        <h3 class="text-xl font-bold text-white mb-2"></h3>
+                        <p class="text-gray-200 mb-4">Head of Research</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-white hover:text-blue-400 social-icon"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lightbulb text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Innovation</h3>
+                    <p class="text-gray-600">Pushing the boundaries of climate monitoring technology.</p>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Reliability</h3>
+                    <p class="text-gray-600">Delivering accurate and dependable solutions.</p>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Partnership</h3>
+                    <p class="text-gray-600">Building lasting relationships with our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

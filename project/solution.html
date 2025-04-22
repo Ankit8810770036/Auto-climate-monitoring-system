@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ClimaSense Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --section-bg: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --gradient-2: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            --gradient-3: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background-color: #f1f5f9;
+            background-image: 
+                radial-gradient(at 40% 20%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        nav li {
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav li:hover::before {
+            transform: translateX(100%);
+        }
+
+        nav li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .content-section {
+            background: var(--gradient-1);
+            padding: 60px 0;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .containers {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin: 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .containers::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .containers:hover::before {
+            opacity: 1;
+        }
+
+        .containers:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .containers img {
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .containers:hover img {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+            letter-spacing: -0.5px;
+        }
+
+        .lead {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .list-disc li {
+            position: relative;
+            padding-left: 35px;
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .list-disc li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+            font-size: 1.4rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px 0;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+
+        .footer a {
+            color: white;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            padding: 0;
+            display: inline-block;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .social-icon {
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2) rotate(360deg);
+            color: var(--accent-color);
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-card h3 {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-roboto">
+    <header class="gradient-bg text-white shadow">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <img id="img" src="logo.webp" alt="ClimaSense Logo" style="height: 100px; width: 100px;">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="plateform.html">Platform</a></li>
+                    <li><a href="solution.html" style="color: var(--accent-color);">Solutions</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="aboutus.html">About us</a></li>
+                    <li><a href="contectus.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">We Make Remotely Sensed Data Work For You</h2>
+            <p class="text-lg mb-8">ClimaSense's platform enables effortless integration of remotely sensed data and derived analytics, allowing more frequent, more insightful digital monitoring of land and assets.</p>
+            <a href="#" class="btn-primary">Book an Intro Call</a>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Trusted by Innovation-Driven Energy, Utility and Infrastructure Companies</h2>
+            <p class="text-lg mb-8">ClimaSense platform is developed to help Vegetation, Operations and Data managers to improve the performance of their assets.</p>
+        </div>
+    </section>
+
+    <section class="bg-gray-200 py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Adding Value on Every Stage</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">1. Source Data Acquisition</h3>
+                    <p>We fully coordinate the tasking and acquisition of source data with our trusted providers, selecting the most suitable sensors and spatial resolutions, determining capture dates and revisit frequencies, and defining coverage areas while optimizing client's monitoring budget.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">2. AI-Powered Data Analysis</h3>
+                    <p>We conduct pre- and post-processing of the source data, implementing necessary corrections before analyzing it with our proprietary machine learning algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">3. Decision-Maker-Ready Analytics</h3>
+                    <p>The output analytics is delivered through our cloud-based platform, which displays a variety of data layers and monitoring metrics in both table and map formats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">We Aim to Provide Best-in-Class Digital Inspection Solution</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="stats-card p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold">30+</h3>
+                    <p>Industry Customers</p>
+                </div>
+                <div class="stats-card p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold">19,500+</h3>
+                    <p>Kilometers Surveyed</p>
+                </div>
+                <div class="stats-card p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold">15+</h3>
+                    <p>Countries Worldwide</p>
+                </div>
+                <div class="stats-card p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold">8750+</h3>
+                    <p>Monitoring Reports</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-200 py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">About the Platform</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Benefits Unlocked: Simplified Access to Geospatial Analytics</h3>
+                    <p>No more rigidity of third-party end-to-end platforms or the complications of building an in-house solution.</p>
+                    <ul class="list-disc">
+                        <li>Analytics as a Service: Experience flexibility, which doesn't require an overhaul of existing architecture and processes</li>
+                        <li>Tailored Monitoring: Secured by access to a broad range of data, including satellite, climate, and other data sources</li>
+                        <li>Enhanced Accessibility: Of widespread assets and remote areas, regardless of their location and weather constraints</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Empowering Diverse Use Cases</h3>
+                    <ul class="list-disc">
+                        <li>Vegetation Monitoring: X2 More Frequent Monitoring without doubling your monitoring budget</li>
+                        <li>Climate & Weather Impact: Improved Climate Resiliency by integrating up to 50 individual and collective weather metrics</li>
+                        <li>3rd Party Works & Change Detection: Enhanced RoW Safety due to timely detection of unsolicited activity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">Solutions Tailored to Industry Demands</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Power TSOs and DSOs</h3>
+                    <p>Increase safety, reliability and resiliency of your grid and ensure uninterrupted service delivery.</p>
+                    <a href="#" class="btn-primary mt-4 inline-block">Discover now</a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Oil and Gas</h3>
+                    <p>Timely mitigate failure risks and ensure the highest safety level of your assets, personnel and environment.</p>
+                    <a href="#" class="btn-primary mt-4 inline-block">Discover now</a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Roads and Railways</h3>
+                    <p>Choose optimal routes for transport networks and monitor construction progress, at scale.</p>
+                    <a href="#" class="btn-primary mt-4 inline-block">Discover now</a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-2xl font-bold mb-4">Renewable Energy</h3>
+                    <p>Analyse terrain to identify best sites for solar and wind power plants, maximizing energy output.</p>
+                    <a href="#" class="btn-primary mt-4 inline-block">Discover now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-200 py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">ClimaSense Monthly Newsletter</h2>
+            <p class="text-lg mb-8">Insights into Asset & Land Remote Monitoring and AI-Driven Analytics</p>
+            <form class="max-w-lg mx-auto">
+                <input type="email" placeholder="Enter your email" class="newsletter-input w-full p-3 rounded-lg mb-4">
+                <button type="submit" class="btn-primary">Subscribe</button>
+                <p class="text-sm mt-4">By signing up you agree to receive our marketing messages in accordance with Privacy Policy and Terms & Conditions. You can unsubscribe any time.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ClimaSense Ltd.</h3>
+                    <p>Electron Building</p>
+                    <p>Fermi Ave, Harwell OX11 0QR, Great Britain</p>
+                    <p>Phone: +44 772 594 4643</p>
+                    <p>Email: info@ClimaSense.com</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us on Social Media</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick links</h3>
+                    <ul>
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="contectus.html">Contact</a></li>
+                        <li><a href="term&condition.html">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

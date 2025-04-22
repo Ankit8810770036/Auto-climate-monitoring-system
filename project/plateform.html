@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ClimaSense Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --section-bg: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --gradient-2: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            --gradient-3: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        body {
+            background-color: #f1f5f9;
+            background-image: 
+                radial-gradient(at 40% 20%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, hsla(212, 100%, 90%, 0.1) 0px, transparent 50%);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        nav li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logo {
+            animation: heartbeat 2s infinite;
+            border: 4px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .content-section {
+            background: var(--gradient-1);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .feature-section {
+            background: var(--gradient-2);
+            position: relative;
+            padding: 80px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            margin: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-disc {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .list-disc li {
+            position: relative;
+            padding: 15px 0 15px 40px;
+            margin-bottom: 10px;
+        }
+
+        .list-disc li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lead {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            color: white;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            display: inline-block;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer p {
+            padding: 8px 0;
+            margin: 0;
+        }
+
+        .footer ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer li {
+            padding: 8px 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="font-roboto">
+    <header class="gradient-bg text-white p-4">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="homepage.html"><img src="logo.webp" alt="ClimaSense logo" class="logo h-24 w-24 rounded-full"></a>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="plateform.html">Platform</a></li>
+                    <li><a href="solution.html">Solutions</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="aboutus.html">About us</a></li>
+                    <li><a href="contectus.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto">
+        <section class="content-section">
+            <div class="container mx-auto text-center">
+                <h2 class="text-gradient text-4xl font-bold">Decision-Maker-Ready Geospatial Analytics</h2>
+                <p class="lead">The ClimaSense Platform collects and transforms a variety of remotely sensed data with AI, providing comprehensive risks and conditions analytics that meet unique monitoring needs of infrastructure and land owners.</p>
+                <button class="btn-primary">Book a Demo</button>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <div class="container mx-auto">
+                <h2 class="text-gradient text-3xl font-bold text-center mb-8">Upgraded ClimaSense MF 2.0 is Now Live!</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Climate & Weather Impact Analysis</h3>
+                        <p>Digital Elevation Data for precise environmental monitoring and risk assessment.</p>
+                        <a href="#" class="text-blue-500 hover:underline mt-4 inline-block">Click to Read</a>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Multi-Layer Reporting</h3>
+                        <p>Vegetation Growth Rate and Comparative View for comprehensive analysis.</p>
+                        <a href="#" class="text-blue-500 hover:underline mt-4 inline-block">Click to Read</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container mx-auto text-center">
+                <h2 class="text-gradient text-3xl font-bold mb-8">Data-Driven Insights and Precision for Optimized Asset Management</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">40+</h3>
+                        <p class="text-xl mb-2">Data Sources Used</p>
+                        <p>For tailored monitoring strategy and comprehensive analysis</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">85+</h3>
+                        <p class="text-xl mb-2">Risk Metrics</p>
+                        <p>For dynamic and scalable reporting combinations</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">90%+</h3>
+                        <p class="text-xl mb-2">Classification Accuracy</p>
+                        <p>For reliable identification and mitigation of asset risks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <div class="container mx-auto">
+                <h2 class="text-gradient text-3xl font-bold text-center mb-8">Sneak Peak Into Platform Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Asset Data</h3>
+                        <p>Your asset data, such as asset name and category, location and elevation, network length, start and end points, – all is at your fingertips for easy asset management.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Data Sources</h3>
+                        <p>Your collection of input data, may it be satellite imagery, climate data or other data sources, Unlock multiple use cases and insights from the same data.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Data Layers</h3>
+                        <p>The platform processes raw source data into valuable data layers, such as habitat classification, height estimation, vegetation health index (NDVI), and change detection.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Dynamic Reports</h3>
+                        <p>Understand to which extent each asset is affected by a risk event, along with its exact location and detailed characteristics, or monitor changes that occur between monitoring passes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container mx-auto text-center">
+                <h2 class="text-gradient text-3xl font-bold mb-8">With Our Platform You Hold the Power ⚡</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Flexibility and Customization</h3>
+                        <p>You choose the key risk indicators you need to monitor, as well as when and how to use them</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Scalable Interoperability</h3>
+                        <p>Analytics can be easily used by colleagues across multiple functions, enabling cohesive decision-making</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4">Seamless Integration</h3>
+                        <p>Plug and play with Spottitt analytics, just like LEGO bricks, to enhance your existing and new systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-4">ClimaSense Ltd.</h3>
+                    <p class="text-sm">Electron Building</p>
+                    <p class="text-sm">Fermi Ave, Harwell OX11 0QR,</p>
+                    <p class="text-sm">Great India</p>
+                    <p class="text-sm">Phone: +44 772 594 4643</p>
+                    <p class="text-sm">Email: info@ClimaSense.com</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-4">Monitoring Use Cases</h3>
+                    <ul class="list-disc text-sm pl-5">
+                        <li>Vegetation</li>
+                        <li>Land & Assets Motion</li>
+                        <li>3rd Party Work & Change</li>
+                        <li>Route Planning & Construction Progress</li>
+                        <li>Climate Conditions</li>
+                        <li>Biodiversity</li>
+                        <li>Renewable Site Selection</li>
+                    </ul>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold mb-4">Industries</h3>
+                    <ul class="list-disc text-sm pl-5">
+                        <li>Power</li>
+                        <li>Oil & Gas</li>
+                        <li>Roads & Railways</li>
+                        <li>Renewables</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 p-4">
+                <h3 class="text-lg font-bold mb-4">Quick links</h3>
+                <ul class="list-disc text-sm pl-5">
+                    <li><a href="aboutus.html">About us</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                    <li><a href="term&condition.html">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
